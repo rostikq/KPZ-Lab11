@@ -1,0 +1,47 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+class ShipmentFacade {
+    - addressChecker: AddressChecker
+    - costCalculator: CostCalculator
+    - paymentProcessor: PaymentProcessor
+    - waybillGenerator: WaybillGenerator
+    - routePlanner: RoutePlanner
+    - notifier: Notifier
+    + completeShipment(address: String, weight: double, phone: String): void
+    + getCostCalculator(): CostCalculator
+}
+
+class AddressChecker {
+    + checkAddress(address: String): void
+}
+
+class CostCalculator {
+    + calculate(weight: double): double
+}
+
+class PaymentProcessor {
+    + processPayment(amount: double): void
+}
+
+class WaybillGenerator {
+    + generateWaybill(): String
+}
+
+class RoutePlanner {
+    + planRoute(address: String): void
+}
+
+class Notifier {
+    + notifyReceiver(phone: String): void
+}
+
+ShipmentFacade --> AddressChecker : використовує
+ShipmentFacade --> CostCalculator : використовує
+ShipmentFacade --> PaymentProcessor : використовує
+ShipmentFacade --> WaybillGenerator : використовує
+ShipmentFacade --> RoutePlanner : використовує
+ShipmentFacade --> Notifier : використовує
+
+note top of ShipmentFacade : Патерн: Facade\n(Уніфікований інтерфейс до підсистем)
+@enduml

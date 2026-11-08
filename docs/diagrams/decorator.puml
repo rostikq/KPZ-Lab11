@@ -1,0 +1,49 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface Shipment {
+    + getDescription(): String
+    + getCost(): double
+}
+
+class BasicShipment {
+    - destination: String
+    + BasicShipment(destination: String)
+    + getDescription(): String
+    + getCost(): double
+}
+
+abstract class ShipmentDecorator {
+    # wrappedShipment: Shipment
+    + ShipmentDecorator(shipment: Shipment)
+    + getDescription(): String
+    + getCost(): double
+}
+
+class InsuranceDecorator {
+    + InsuranceDecorator(shipment: Shipment)
+    + getDescription(): String
+    + getCost(): double
+}
+
+class PackagingDecorator {
+    + PackagingDecorator(shipment: Shipment)
+    + getDescription(): String
+    + getCost(): double
+}
+
+class CashOnDeliveryDecorator {
+    + CashOnDeliveryDecorator(shipment: Shipment)
+    + getDescription(): String
+    + getCost(): double
+}
+
+Shipment <|.. BasicShipment
+Shipment <|.. ShipmentDecorator
+ShipmentDecorator o--> Shipment : обгортає
+ShipmentDecorator <|-- InsuranceDecorator
+ShipmentDecorator <|-- PackagingDecorator
+ShipmentDecorator <|-- CashOnDeliveryDecorator
+
+note top of ShipmentDecorator : Патерн: Decorator\n(Динамічне розширення функціоналу)
+@enduml

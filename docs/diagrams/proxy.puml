@@ -1,0 +1,28 @@
+@startuml
+skinparam classAttributeIconSize 0
+
+interface TrackingService {
+    + getTrackingStatus(trackingNumber: String): String
+}
+
+class ExternalPartnerTrackingService {
+    - paidRequestsCount: int
+    + getTrackingStatus(trackingNumber: String): String
+    + getPaidRequestsCount(): int
+}
+
+class TrackingServiceProxy {
+    - realService: ExternalPartnerTrackingService
+    - cache: Map<String, CachedStatus>
+    - {static} CACHE_TTL_MS: long
+    + TrackingServiceProxy(realService: ExternalPartnerTrackingService)
+    + getTrackingStatus(trackingNumber: String): String
+    + getPaidRequestsCount(): int
+}
+
+TrackingService <|.. ExternalPartnerTrackingService
+TrackingService <|.. TrackingServiceProxy
+TrackingServiceProxy --> ExternalPartnerTrackingService : делегує / контролює
+
+note top of TrackingServiceProxy : Патерн: Proxy\n(Кешування та контроль доступу)
+@enduml
