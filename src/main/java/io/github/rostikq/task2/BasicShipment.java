@@ -1,6 +1,6 @@
 package io.github.rostikq.task2;
 
-class BasicShipment implements Shipment {
+public class BasicShipment implements Shipment {
     private String destination;
 
     public BasicShipment(String destination) {

@@ -1,6 +1,6 @@
 package io.github.rostikq.task03;
 
-class ExternalPartnerTrackingService implements TrackingService {
+public class ExternalPartnerTrackingService implements TrackingService {
     private int paidRequestsCount = 0;
 
     @Override
