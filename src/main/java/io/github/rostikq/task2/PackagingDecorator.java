@@ -1,6 +1,6 @@
 package io.github.rostikq.task2;
 
-class PackagingDecorator extends ShipmentDecorator {
+public class PackagingDecorator extends ShipmentDecorator {
     public PackagingDecorator(Shipment shipment) { super(shipment); }
     @Override
     public String getDescription() { return wrappedShipment.getDescription() + " + Пакування"; }

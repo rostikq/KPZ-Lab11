@@ -3,7 +3,7 @@ package io.github.rostikq.task03;
 import java.util.HashMap;
 import java.util.Map;
 
-class TrackingServiceProxy implements TrackingService {
+public class TrackingServiceProxy implements TrackingService {
     private ExternalPartnerTrackingService realService;
     private Map<String, CachedStatus> cache = new HashMap<>();
     private static final long CACHE_TTL_MS = 3000;

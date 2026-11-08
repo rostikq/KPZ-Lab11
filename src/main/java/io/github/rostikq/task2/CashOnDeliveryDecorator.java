@@ -1,6 +1,6 @@
 package io.github.rostikq.task2;
 
-class CashOnDeliveryDecorator extends ShipmentDecorator {
+public class CashOnDeliveryDecorator extends ShipmentDecorator {
     public CashOnDeliveryDecorator(Shipment shipment) { super(shipment); }
     @Override
     public String getDescription() { return wrappedShipment.getDescription() + " + Накладений платіж"; }
